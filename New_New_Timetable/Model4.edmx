@@ -1,0 +1,283 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Initial_DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="lecturer">
+          <Key>
+            <PropertyRef Name="lecturer_id" />
+          </Key>
+          <Property Name="lecturer_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="lecturer_name" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="room">
+          <Key>
+            <PropertyRef Name="room_id" />
+          </Key>
+          <Property Name="room_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="room_name" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="subject">
+          <Key>
+            <PropertyRef Name="subject_id" />
+          </Key>
+          <Property Name="subject_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="subject_name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="duration" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'C:\BOOTCAMP\NEW_NEW_TIMETABLE\NEW_NEW_TIMETABLE\APP_DATA\INITIAL_DATABASE.MDF.dbo.subject_lecturer_room' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="subject_lecturer_room">
+          <Key>
+            <PropertyRef Name="subject_subject_id" />
+            <PropertyRef Name="lecturer_lecturer_id" />
+            <PropertyRef Name="room_room_id" />
+          </Key>
+          <Property Name="subject_subject_id" Type="int" Nullable="false" />
+          <Property Name="lecturer_lecturer_id" Type="int" Nullable="false" />
+          <Property Name="room_room_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Table">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__subject_l__lectu__02FC7413">
+          <End Role="lecturer" Type="Self.lecturer" Multiplicity="1" />
+          <End Role="subject_lecturer_room" Type="Self.subject_lecturer_room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lecturer">
+              <PropertyRef Name="lecturer_id" />
+            </Principal>
+            <Dependent Role="subject_lecturer_room">
+              <PropertyRef Name="lecturer_lecturer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__subject_l__room___03F0984C">
+          <End Role="room" Type="Self.room" Multiplicity="1" />
+          <End Role="subject_lecturer_room" Type="Self.subject_lecturer_room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="room">
+              <PropertyRef Name="room_id" />
+            </Principal>
+            <Dependent Role="subject_lecturer_room">
+              <PropertyRef Name="room_room_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__subject_l__subje__02084FDA">
+          <End Role="subject" Type="Self.subject" Multiplicity="1" />
+          <End Role="subject_lecturer_room" Type="Self.subject_lecturer_room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="subject">
+              <PropertyRef Name="subject_id" />
+            </Principal>
+            <Dependent Role="subject_lecturer_room">
+              <PropertyRef Name="subject_subject_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Initial_DatabaseModelStoreContainer">
+          <EntitySet Name="lecturer" EntityType="Self.lecturer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="room" EntityType="Self.room" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="subject" EntityType="Self.subject" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table" EntityType="Self.Table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="subject_lecturer_room" EntityType="Self.subject_lecturer_room" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [subject_lecturer_room].[subject_subject_id] AS [subject_subject_id], 
+    [subject_lecturer_room].[lecturer_lecturer_id] AS [lecturer_lecturer_id], 
+    [subject_lecturer_room].[room_room_id] AS [room_room_id]
+    FROM [dbo].[subject_lecturer_room] AS [subject_lecturer_room]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__subject_l__lectu__02FC7413" Association="Self.FK__subject_l__lectu__02FC7413">
+            <End Role="lecturer" EntitySet="lecturer" />
+            <End Role="subject_lecturer_room" EntitySet="subject_lecturer_room" />
+          </AssociationSet>
+          <AssociationSet Name="FK__subject_l__room___03F0984C" Association="Self.FK__subject_l__room___03F0984C">
+            <End Role="room" EntitySet="room" />
+            <End Role="subject_lecturer_room" EntitySet="subject_lecturer_room" />
+          </AssociationSet>
+          <AssociationSet Name="FK__subject_l__subje__02084FDA" Association="Self.FK__subject_l__subje__02084FDA">
+            <End Role="subject" EntitySet="subject" />
+            <End Role="subject_lecturer_room" EntitySet="subject_lecturer_room" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Initial_DatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="lecturer">
+          <Key>
+            <PropertyRef Name="lecturer_id" />
+          </Key>
+          <Property Name="lecturer_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="lecturer_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="subject_lecturer_room" Relationship="Self.FK__subject_l__lectu__02FC7413" FromRole="lecturer" ToRole="subject_lecturer_room" />
+        </EntityType>
+        <EntityType Name="room">
+          <Key>
+            <PropertyRef Name="room_id" />
+          </Key>
+          <Property Name="room_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="room_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="subject_lecturer_room" Relationship="Self.FK__subject_l__room___03F0984C" FromRole="room" ToRole="subject_lecturer_room" />
+        </EntityType>
+        <EntityType Name="subject">
+          <Key>
+            <PropertyRef Name="subject_id" />
+          </Key>
+          <Property Name="subject_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="subject_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="duration" Type="Int32" />
+          <NavigationProperty Name="subject_lecturer_room" Relationship="Self.FK__subject_l__subje__02084FDA" FromRole="subject" ToRole="subject_lecturer_room" />
+        </EntityType>
+        <EntityType Name="Table">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="subject_lecturer_room">
+          <Key>
+            <PropertyRef Name="subject_subject_id" />
+            <PropertyRef Name="lecturer_lecturer_id" />
+            <PropertyRef Name="room_room_id" />
+          </Key>
+          <Property Name="subject_subject_id" Type="Int32" Nullable="false" />
+          <Property Name="lecturer_lecturer_id" Type="Int32" Nullable="false" />
+          <Property Name="room_room_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="lecturer" Relationship="Self.FK__subject_l__lectu__02FC7413" FromRole="subject_lecturer_room" ToRole="lecturer" />
+          <NavigationProperty Name="room" Relationship="Self.FK__subject_l__room___03F0984C" FromRole="subject_lecturer_room" ToRole="room" />
+          <NavigationProperty Name="subject" Relationship="Self.FK__subject_l__subje__02084FDA" FromRole="subject_lecturer_room" ToRole="subject" />
+        </EntityType>
+        <Association Name="FK__subject_l__lectu__02FC7413">
+          <End Role="lecturer" Type="Self.lecturer" Multiplicity="1" />
+          <End Role="subject_lecturer_room" Type="Self.subject_lecturer_room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lecturer">
+              <PropertyRef Name="lecturer_id" />
+            </Principal>
+            <Dependent Role="subject_lecturer_room">
+              <PropertyRef Name="lecturer_lecturer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__subject_l__room___03F0984C">
+          <End Role="room" Type="Self.room" Multiplicity="1" />
+          <End Role="subject_lecturer_room" Type="Self.subject_lecturer_room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="room">
+              <PropertyRef Name="room_id" />
+            </Principal>
+            <Dependent Role="subject_lecturer_room">
+              <PropertyRef Name="room_room_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__subject_l__subje__02084FDA">
+          <End Role="subject" Type="Self.subject" Multiplicity="1" />
+          <End Role="subject_lecturer_room" Type="Self.subject_lecturer_room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="subject">
+              <PropertyRef Name="subject_id" />
+            </Principal>
+            <Dependent Role="subject_lecturer_room">
+              <PropertyRef Name="subject_subject_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Initial_DatabaseEntities3" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="lecturers" EntityType="Self.lecturer" />
+          <EntitySet Name="rooms" EntityType="Self.room" />
+          <EntitySet Name="subjects" EntityType="Self.subject" />
+          <EntitySet Name="Tables" EntityType="Self.Table" />
+          <EntitySet Name="subject_lecturer_room" EntityType="Self.subject_lecturer_room" />
+          <AssociationSet Name="FK__subject_l__lectu__02FC7413" Association="Self.FK__subject_l__lectu__02FC7413">
+            <End Role="lecturer" EntitySet="lecturers" />
+            <End Role="subject_lecturer_room" EntitySet="subject_lecturer_room" />
+          </AssociationSet>
+          <AssociationSet Name="FK__subject_l__room___03F0984C" Association="Self.FK__subject_l__room___03F0984C">
+            <End Role="room" EntitySet="rooms" />
+            <End Role="subject_lecturer_room" EntitySet="subject_lecturer_room" />
+          </AssociationSet>
+          <AssociationSet Name="FK__subject_l__subje__02084FDA" Association="Self.FK__subject_l__subje__02084FDA">
+            <End Role="subject" EntitySet="subjects" />
+            <End Role="subject_lecturer_room" EntitySet="subject_lecturer_room" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Initial_DatabaseModelStoreContainer" CdmEntityContainer="Initial_DatabaseEntities3">
+          <EntitySetMapping Name="lecturers">
+            <EntityTypeMapping TypeName="Initial_DatabaseModel.lecturer">
+              <MappingFragment StoreEntitySet="lecturer">
+                <ScalarProperty Name="lecturer_id" ColumnName="lecturer_id" />
+                <ScalarProperty Name="lecturer_name" ColumnName="lecturer_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="rooms">
+            <EntityTypeMapping TypeName="Initial_DatabaseModel.room">
+              <MappingFragment StoreEntitySet="room">
+                <ScalarProperty Name="room_id" ColumnName="room_id" />
+                <ScalarProperty Name="room_name" ColumnName="room_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="subjects">
+            <EntityTypeMapping TypeName="Initial_DatabaseModel.subject">
+              <MappingFragment StoreEntitySet="subject">
+                <ScalarProperty Name="subject_id" ColumnName="subject_id" />
+                <ScalarProperty Name="subject_name" ColumnName="subject_name" />
+                <ScalarProperty Name="duration" ColumnName="duration" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tables">
+            <EntityTypeMapping TypeName="Initial_DatabaseModel.Table">
+              <MappingFragment StoreEntitySet="Table">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="subject_lecturer_room">
+            <EntityTypeMapping TypeName="Initial_DatabaseModel.subject_lecturer_room">
+              <MappingFragment StoreEntitySet="subject_lecturer_room">
+                <ScalarProperty Name="subject_subject_id" ColumnName="subject_subject_id" />
+                <ScalarProperty Name="lecturer_lecturer_id" ColumnName="lecturer_lecturer_id" />
+                <ScalarProperty Name="room_room_id" ColumnName="room_room_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

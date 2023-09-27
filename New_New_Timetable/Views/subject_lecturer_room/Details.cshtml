@@ -1,0 +1,42 @@
+﻿@model New_New_Timetable.subject_lecturer_room
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>subject_lecturer_room</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.lecturer.lecturer_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lecturer.lecturer_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.room.room_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.room.room_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.subject.subject_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.subject.subject_name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

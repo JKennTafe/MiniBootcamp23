@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2944f8b1668240bead2ceb63f4ebc30d" Name="Diagram1">
+        <EntityTypeShape EntityType="Initial_DatabaseModel.lecturer" Width="2" PointX="0.5" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Initial_DatabaseModel.room" Width="1.875" PointX="8.625" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Initial_DatabaseModel.subject" Width="1.75" PointX="0.5" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Initial_DatabaseModel.Table" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Initial_DatabaseModel.subject_lecturer_room" Width="1.875" PointX="4.875" PointY="1.5" IsExpanded="true" />
+        <AssociationConnector Association="Initial_DatabaseModel.FK__subject_l__lectu__02FC7413" ManuallyRouted="false" />
+        <AssociationConnector Association="Initial_DatabaseModel.FK__subject_l__room___03F0984C" ManuallyRouted="false" />
+        <AssociationConnector Association="Initial_DatabaseModel.FK__subject_l__subje__02084FDA" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,65 @@
+﻿@model IEnumerable<New_New_Timetable.subject_lecturer_room>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<table class="table">
+    <h1>Timetable</h1>
+    <br/>
+    <tr>
+        <th>
+            Duration
+        </th>
+        <th>
+            <h2>Monday</h2>
+        </th>
+        <th>
+            <h2>Tuesday</h2>
+        </th>
+        <th>
+            <h2>Wednesday</h2>
+        </th>
+        <th>
+            <h2>Thursday</h2>
+        </th>
+        <th>
+            <h2>Friday</h2>
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            <h6>09:00-18:00</h6>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lecturer.lecturer_name) <br />
+            @Html.DisplayFor(modelItem => item.room.room_name) <br />
+            @Html.DisplayFor(modelItem => item.subject.subject_name) <br />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lecturer.lecturer_name) <br />
+            @Html.DisplayFor(modelItem => item.room.room_name) <br />
+            @Html.DisplayFor(modelItem => item.subject.subject_name) <br />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lecturer.lecturer_name) <br />
+            @Html.DisplayFor(modelItem => item.room.room_name) <br />
+            @Html.DisplayFor(modelItem => item.subject.subject_name) <br />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lecturer.lecturer_name) <br />
+            @Html.DisplayFor(modelItem => item.room.room_name) <br />
+            @Html.DisplayFor(modelItem => item.subject.subject_name) <br />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lecturer.lecturer_name) <br />
+            @Html.DisplayFor(modelItem => item.room.room_name) <br />
+            @Html.DisplayFor(modelItem => item.subject.subject_name) <br />
+        </td>
+    </tr>
+}
+
+</table>

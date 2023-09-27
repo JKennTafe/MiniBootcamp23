@@ -1,0 +1,58 @@
+﻿@model New_New_Timetable.lecturer
+
+@{
+    ViewBag.Title = "About";
+}
+<main aria-labelledby="title">
+    <h2 id="title">@ViewBag.Title.</h2>
+    <h3>@ViewBag.Message</h3>
+
+    <p>Use this area to provide additional information.</p>
+
+    <fieldset>
+        <legend>Timetable</legend>
+        <table class="table">
+            <tr>
+                <th></th>
+                <th>
+                    Monday
+                </th>
+                <th>
+                    Tuesday
+                </th>
+                <th>
+                    Wednesday
+                </th>
+                <th>
+                    Thursday
+                </th>
+                <th>
+                    Friday
+                </th>
+            </tr>
+            @*@if (Model.lecturer.subject_lecturer_room.Count > 0)
+            {
+                foreach (var item in Model.lecturer.subject_lecturer_room)
+                {
+                    <tr>
+                        <td>
+                            @item.lecturer.lecturer_name
+                        </td>
+                        <td>
+                            @item.subject.subject_name
+                        </td>
+                        
+                    </tr>
+                }
+            }
+            else
+            {
+                <h2>No info provided</h2>
+            }*@
+</table>
+
+        </fieldset>
+        @*<p>
+                @Html.RouteLink("Add New Title", new { controller = "Titles", action = "Create", title_id = Model.pub_id })
+            </p>*@
+    </main>
